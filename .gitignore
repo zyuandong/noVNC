@@ -10,3 +10,8 @@ recordings
 *.swp
 *~
 noVNC-*.tgz
+/dist
+/output
+.DS_Store
+
+index.html
