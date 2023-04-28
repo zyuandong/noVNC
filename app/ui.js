@@ -250,6 +250,8 @@ const UI = {
       }
     }
 
+    let pathname = window.location.pathname;
+
     /* Populate the controls if defaults are provided in the URL */
     UI.initSetting("host", window.location.hostname);
     UI.initSetting("port", port);
@@ -276,7 +278,7 @@ const UI = {
     UI.initSetting("shared", true);
     UI.initSetting("view_only", false);
     UI.initSetting("show_dot", false);
-    UI.initSetting("path", "websockify");
+    UI.initSetting("path", pathname + "websockify");
     UI.initSetting("repeaterID", "");
     UI.initSetting("reconnect", false);
     UI.initSetting("reconnect_delay", 5000);
@@ -1394,7 +1396,13 @@ const UI = {
     if (port) {
       url += ":" + port;
     }
-    url += "/" + path;
+    url += path;
+
+    console.log(url);
+
+    // url =
+    //   'ws://labex.dev/vnc-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJob3N0IjoiMTcyLjIzLjI0MC4xMzQiLCJwYXNzd29yZCI6IjEyMzQ1NiIsInBvcnQiOiI0OTE3OSIsInVzZXIiOiJsYWJleCJ9.tAGq1lHXvpZaC2bIi3vPeUMnVKJprMBqsi3O02XOOfY/' +
+    //   "websockify";
 
     UI.rfb = new RFB(
       document.getElementById("noVNC_container"),
