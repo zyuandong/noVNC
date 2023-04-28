@@ -93,5 +93,6 @@
     "rfb",
     "novnc",
     "websockify"
-  ]
+  ],
+  "dependencies": {}
 }
