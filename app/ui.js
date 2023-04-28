@@ -231,8 +231,6 @@ const UI = {
       }
     }
 
-    let pathname = window.location.pathname;
-
     /* Populate the controls if defaults are provided in the URL */
     UI.initSetting("host", window.location.hostname);
     UI.initSetting("port", port);
@@ -259,7 +257,7 @@ const UI = {
     UI.initSetting("shared", true);
     UI.initSetting("view_only", false);
     UI.initSetting("show_dot", false);
-    UI.initSetting("path", pathname + "websockify");
+    UI.initSetting("path", "websockify");
     UI.initSetting("repeaterID", "");
     UI.initSetting("reconnect", false);
     UI.initSetting("reconnect_delay", 5000);
@@ -1371,13 +1369,11 @@ const UI = {
 
     let url;
 
-    url = UI.getSetting("encrypt") ? "wss" : "ws";
-
-    url += "://" + host;
-    if (port) {
-      url += ":" + port;
-    }
-    url += path;
+    // url = UI.getSetting("encrypt") ? "wss" : "ws";
+    url = window.location.protocol === "https:" ? "wss" : "ws";
+    
+    url += "://" + window.location.host;
+    url += window.location.pathname + "websockify";
 
     UI.rfb = new RFB(
       document.getElementById("noVNC_container"),
