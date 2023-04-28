@@ -97,25 +97,6 @@ const UI = {
     // Translate the DOM
     l10n.translateDOM();
 
-    fetch("./package.json")
-      .then((response) => {
-        if (!response.ok) {
-          throw Error("" + response.status + " " + response.statusText);
-        }
-        return response.json();
-      })
-      .then((packageInfo) => {
-        Array.from(document.getElementsByClassName("noVNC_version")).forEach(
-          (el) => (el.innerText = packageInfo.version)
-        );
-      })
-      .catch((err) => {
-        Log.Error("Couldn't fetch package.json: " + err);
-        Array.from(document.getElementsByClassName("noVNC_version_wrapper"))
-          .concat(Array.from(document.getElementsByClassName("noVNC_version_separator")))
-          .forEach((el) => (el.style.display = "none"));
-      });
-
     // Adapt the interface for touch screen devices
     if (isTouchDevice) {
       document.documentElement.classList.add("noVNC_touch");
@@ -1398,12 +1379,6 @@ const UI = {
     }
     url += path;
 
-    console.log(url);
-
-    // url =
-    //   'ws://labex.dev/vnc-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJob3N0IjoiMTcyLjIzLjI0MC4xMzQiLCJwYXNzd29yZCI6IjEyMzQ1NiIsInBvcnQiOiI0OTE3OSIsInVzZXIiOiJsYWJleCJ9.tAGq1lHXvpZaC2bIi3vPeUMnVKJprMBqsi3O02XOOfY/' +
-    //   "websockify";
-
     UI.rfb = new RFB(
       document.getElementById("noVNC_container"),
       document.getElementById("noVNC_keyboardinput"),
@@ -2558,39 +2533,6 @@ const UI = {
    */
 };
 
-// Set up translations
-const LINGUAS = [
-  "cs",
-  "de",
-  "el",
-  "es",
-  "ja",
-  "ko",
-  "nl",
-  "pl",
-  "pt_BR",
-  "ru",
-  "sv",
-  "tr",
-  "zh_CN",
-  "zh_TW",
-];
-l10n.setup(LINGUAS);
-if (l10n.language === "en" || l10n.dictionary !== undefined) {
-  UI.prime();
-} else {
-  fetch("app/locale/" + l10n.language + ".json")
-    .then((response) => {
-      if (!response.ok) {
-        throw Error("" + response.status + " " + response.statusText);
-      }
-      return response.json();
-    })
-    .then((translations) => {
-      l10n.dictionary = translations;
-    })
-    .catch((err) => Log.Error("Failed to load translations: " + err))
-    .then(UI.prime);
-}
+UI.prime();
 
 export default UI;

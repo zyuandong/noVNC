@@ -900,25 +900,6 @@ select:active {
   z-index: -1;
 }
 
-/*Default noVNC logo.*/
-/* From: http://fonts.googleapis.com/css?family=Orbitron:700 */
-@font-face {
-  font-family: "Orbitron";
-  font-style: normal;
-  font-weight: 700;
-  src: local("?"), url("Orbitron700.woff") format("woff"), url("Orbitron700.ttf") format("truetype");
-}
-
-.noVNC_logo {
-  color: yellow;
-  font-family: "Orbitron", "OrbitronTTF", sans-serif;
-  line-height: 90%;
-  text-shadow: 0.1em 0.1em 0 black;
-  margin-bottom: 0px;
-  background: white;
-  padding: 5px;
-  border-radius: 5px;
-}
 .noVNC_logo img {
   width: 45%;
 }
