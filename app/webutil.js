@@ -179,9 +179,10 @@ export function eraseSetting(name) {
 //Are we running inside the Kasm VDI Framework
 export function isInsideKasmVDI() {
     //TODO: We should use a more explicit way to detect we are running inside KasmVDI
-    try {
-        return window.self !== window.top;
-    } catch (e) {
-        return true;
-    }
+    // try {
+    //     return window.self !== window.top;
+    // } catch (e) {
+    //     return true;
+    // }
+    return false;
 }
