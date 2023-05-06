@@ -718,6 +718,7 @@ const UI = {
   },
 
   showStatus(text, statusType, time, kasm = false) {
+    return;
     // If inside the full Kasm CDI framework, don't show messages unless explicitly told to
     if (WebUtil.isInsideKasmVDI() && !kasm) {
       return;
@@ -1371,7 +1372,7 @@ const UI = {
 
     // url = UI.getSetting("encrypt") ? "wss" : "ws";
     url = window.location.protocol === "https:" ? "wss" : "ws";
-    
+
     url += "://" + window.location.host;
     url += window.location.pathname + "websockify";
 
